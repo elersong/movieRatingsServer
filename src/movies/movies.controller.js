@@ -18,6 +18,7 @@ async function movieExists(req, res, next) {
   }
 }
 
+// Make sure that any id passed in via the url params is a valid number
 function idIsValid(req, res, next) {
   const { movie_id } = req.params;
 
@@ -35,7 +36,7 @@ function idIsValid(req, res, next) {
 
 // GET /movies
 async function list(req, res) {
-  let movies
+  let movies;
   if (req.query.is_showing) { // query is everything after the "?"
     movies = await service.listShowing();
   } else {
