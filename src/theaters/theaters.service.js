@@ -6,6 +6,13 @@ function listAll() {
     .join("movies as m", "mt.movie_id", "m.movie_id")
     .select("t.*","mt.*", "m.*")
     .then(data => {
+      // After joining all three tables together, rearrange the data like this
+      // {
+      //  theater_id: {
+      //                ... theater_data,
+      //                movies: [{movie_data}, {movie_data}, ...],
+      //              }
+      // }
       let resultsObj = {};
       data.forEach(row => {
         if (resultsObj[row.theater_id]) {
@@ -40,7 +47,9 @@ function listAll() {
           }
         }
       });
-      const resultsArr = Object.entries(resultsObj).map(([key, val]) => val);
+
+      // Then, return just the theater objects as an array
+      const resultsArr = Object.values(resultsObj);
       return resultsArr;
     })
 }
