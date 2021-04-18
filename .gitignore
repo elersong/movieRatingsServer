@@ -2,3 +2,4 @@ node_modules
 .attachignore
 .env
 .qualified-attach.json
+.vercel
