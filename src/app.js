@@ -9,14 +9,17 @@ const moviesRouter = require("./movies/movies.router");
 const reviewsRouter = require("./reviews/reviews.router");
 const theaterssRouter = require("./theaters/theaters.router");
 
+// Initiate the express app and configure it to parse incoming JSON on requests
 const app = express();
-app.use(express.json())
+app.use(express.json());
 
+// Connect middleware for the four resources
 app.use("/critics", criticsRouter);
 app.use("/movies", moviesRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/theaters", theaterssRouter);
 
+// Handle paths that are not predetermined
 app.use(notFound);
 app.use(errorHandler);
 
